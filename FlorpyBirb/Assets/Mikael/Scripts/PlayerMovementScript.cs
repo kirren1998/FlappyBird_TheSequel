@@ -68,6 +68,17 @@ public class PlayerMovementScript : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (GoingUp)
+            {
+                GoingUp = false;
+            }
+            if (SlappingEnemy)
+            {
+                SlappingEnemy = false;
+            }
+        }
     }
 
     // Update frames at specific intervals

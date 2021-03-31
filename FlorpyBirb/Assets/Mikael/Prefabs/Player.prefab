@@ -102,9 +102,10 @@ MonoBehaviour:
   UpwardsMomentum: 0.5
   CooldownInSecond: 0.25
   AttackInSeconds: 0.5
-  ComputerMoveset: 0
+  ComputerMoveset: 1
   SlappingEnemy: 0
   SlapHandObject: {fileID: 1571084497712148940}
+  IsAlive: 1
 --- !u!50 &1571084496956587134
 Rigidbody2D:
   serializedVersion: 4
