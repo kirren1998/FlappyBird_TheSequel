@@ -10,8 +10,8 @@ public class PlayerTemp : MonoBehaviour
     [Range(0.1f, 1)]public float speedRamp;
     private void Start()
     {
-        StartCoroutine(DoTheRamp(10));
         settings = Settings.settings;
+        StartCoroutine(DoTheRamp(10));
     }
     void Update()
     {
@@ -21,7 +21,6 @@ public class PlayerTemp : MonoBehaviour
     public IEnumerator DoTheRamp(float timer)
     {
         yield return new WaitForSecondsRealtime(timer - (int)settings.difficulty);
-        Debug.Log("Shit");
         rampMeUpScotty = true;
         yield return new WaitForSecondsRealtime(1f);
         rampMeUpScotty = false;
