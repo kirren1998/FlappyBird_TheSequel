@@ -506,5 +506,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1571084496956587135, guid: e617239bfc4b9344eb69b5d61bc491b5, type: 3}
+      propertyPath: ComputerMoveset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571084496956587135, guid: e617239bfc4b9344eb69b5d61bc491b5, type: 3}
+      propertyPath: UpwardsMomentum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e617239bfc4b9344eb69b5d61bc491b5, type: 3}

@@ -32,29 +32,36 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         MouseLocation = Input.mousePosition;
-        if (Input.GetButtonDown("Fire1"))
+        if (ComputerMoveset)
         {
-            if (ComputerMoveset)
+            if (Input.GetButton("Fire1"))
             {
                 GoingUp = true;
             }
-            else
+            if (Input.GetButtonDown("Fire2"))
+            {
+                SlappingEnemy = true;
+                CooldownCurrent = CooldownInSecond;
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (MouseLocation.x <= WindowsSizeX * 0.5f)
                 {
                     GoingUp = true;
                 }
-                else if (MouseLocation.x >= WindowsSizeX * 0.5f && CooldownCurrent <= 0)
+                else if (MouseLocation.x >= WindowsSizeX * 0.5f && CooldownCurrent <= 0 && Input.GetButtonDown("Fire1"))
                 {
                     SlappingEnemy = true;
                     CooldownCurrent = CooldownInSecond;
                 }
             }
-        }
-        else if (Input.GetButtonDown("Fire2") && ComputerMoveset)
-        {
-            SlappingEnemy = true;
-            CooldownCurrent = CooldownInSecond;
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                GoingUp = false;
+            }
         }
     }
 
@@ -63,8 +70,11 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (GoingUp)
         {
-            TheBirbBody.AddForce(Vector2.up * UpwardsMomentum * 9.8f, ForceMode2D.Impulse);
-            GoingUp = false;
+            TheBirbBody.AddForce(Vector2.up * Mathf.Clamp(UpwardsMomentum * 9.8f, 0.2f, UpwardsMomentum), ForceMode2D.Impulse);
+            if (ComputerMoveset)
+            {
+                GoingUp = false;
+            }
         }
         if (SlappingEnemy && !OnGoingSlap)
         {
