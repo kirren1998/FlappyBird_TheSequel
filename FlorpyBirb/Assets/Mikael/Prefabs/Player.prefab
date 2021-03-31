@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae6032ff0f29d142b8aed8b92bf64bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpwardsMomentum: 1.5
+  UpwardsMomentum: 0.5
   CooldownInSecond: 0.25
   AttackInSeconds: 0.5
   ComputerMoveset: 0

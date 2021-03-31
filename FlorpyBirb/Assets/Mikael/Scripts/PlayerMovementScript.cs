@@ -16,6 +16,8 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] GameObject SlapHandObject;
     Vector2 MouseLocation;
 
+    public bool IsAlive = true;
+
     float WindowsSizeX = 100f;
 
     Rigidbody2D TheBirbBody;
@@ -32,35 +34,38 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         MouseLocation = Input.mousePosition;
-        if (ComputerMoveset)
+        if (IsAlive)
         {
-            if (Input.GetButton("Fire1"))
+            if (ComputerMoveset)
             {
-                GoingUp = true;
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                SlappingEnemy = true;
-                CooldownCurrent = CooldownInSecond;
-            }
-        }
-        else
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (MouseLocation.x <= WindowsSizeX * 0.5f)
+                if (Input.GetButton("Fire1"))
                 {
                     GoingUp = true;
                 }
-                else if (MouseLocation.x >= WindowsSizeX * 0.5f && CooldownCurrent <= 0 && Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire2"))
                 {
                     SlappingEnemy = true;
                     CooldownCurrent = CooldownInSecond;
                 }
             }
-            else if (Input.GetButtonUp("Fire1"))
+            else
             {
-                GoingUp = false;
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    if (MouseLocation.x <= WindowsSizeX * 0.5f)
+                    {
+                        GoingUp = true;
+                    }
+                    else if (MouseLocation.x >= WindowsSizeX * 0.5f && CooldownCurrent <= 0 && Input.GetButtonDown("Fire1"))
+                    {
+                        SlappingEnemy = true;
+                        CooldownCurrent = CooldownInSecond;
+                    }
+                }
+                else if (Input.GetButtonUp("Fire1"))
+                {
+                    GoingUp = false;
+                }
             }
         }
     }
@@ -101,9 +106,14 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && IsAlive)
         {
             Debug.Log("Dead");
+            if (FindObjectOfType<EpicAsHeckScript>())
+            {
+                FindObjectOfType<EpicAsHeckScript>().IncreaseDeathNum();
+            }
+            IsAlive = false;
         }
     }
 }
