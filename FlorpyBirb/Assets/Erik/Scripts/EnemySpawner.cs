@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     Settings settings;
-    public GameObject enemenemy;
+    public GameObject enenemeny;
     public Sprite[] rockSprites, tefatSprites, eyeSprites;
     [Range(1, 10)] public float spawnSpeed;
     private void Start()
@@ -20,13 +20,13 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject rock;
         Enemy emily = (Enemy)Random.Range(0, (int)Enemy.maxShit);
-        rock = Instantiate(enemenemy, new Vector2(transform.position.x, Random.Range(-4.5f, 4.5f)), Quaternion.identity);
-        rock.GetComponent<SpriteRenderer>().sprite = ChangeSprite(emily);
+        rock = Instantiate(enenemeny, new Vector2(transform.position.x, Random.Range(-4.5f, 4.5f)), Quaternion.identity);
+        rock.GetComponent<SpriteRenderer>().sprite = GibSprite(emily);
         rock.GetComponent<EnemyFightBack>().enemyType = emily;
         Destroy(rock, 5);
         Invoke("SpawnDanger", Random.Range(spawnSpeed / (int)settings.difficulty, 0.1f + spawnSpeed / (int)settings.difficulty));
     }
-    public Sprite ChangeSprite(Enemy emily)
+    public Sprite GibSprite(Enemy emily)
     {
         switch (emily)
         {

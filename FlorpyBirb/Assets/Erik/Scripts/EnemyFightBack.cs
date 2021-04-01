@@ -13,12 +13,13 @@ public class EnemyFightBack : MonoBehaviour
     }
     private void Update()
     {
+
         switch (enemyType)
         {
             default:
             case EnemySpawner.Enemy.eye:
                 {
-                    transform.rotation = Quaternion.Euler(new Vector2(transform.position.y - player.position.y, 0));
+                    transform.rotation = Quaternion.Euler(new Vector2(0, transform.position.x - player.position.x));
                     return;
                 }
             case EnemySpawner.Enemy.tefat:
