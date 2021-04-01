@@ -182,6 +182,11 @@ MonoBehaviour:
   - {fileID: -4077014396740012951, guid: 21a528f22db78464184699eb08278d5d, type: 3}
   - {fileID: -3376063698537044272, guid: 21a528f22db78464184699eb08278d5d, type: 3}
   - {fileID: -5550155211335367034, guid: 21a528f22db78464184699eb08278d5d, type: 3}
+  alineSprites:
+  - {fileID: 3875910722362749109, guid: bfa222a002ec52042b89cfff954043b3, type: 3}
+  - {fileID: 5911024126716800237, guid: bfa222a002ec52042b89cfff954043b3, type: 3}
+  - {fileID: -4873808084759949570, guid: bfa222a002ec52042b89cfff954043b3, type: 3}
+  - {fileID: -7357890874432515995, guid: bfa222a002ec52042b89cfff954043b3, type: 3}
   spawnSpeed: 1
 --- !u!1001 &121234578
 PrefabInstance:
@@ -537,6 +542,7 @@ MonoBehaviour:
   NumberOfDeaths: 0
   TheTextForDeaths: {fileID: 0}
   TheSecretVideo: {fileID: 985235654}
+  ResetUnthinkable: 1
 --- !u!4 &872817743
 Transform:
   m_ObjectHideFlags: 0

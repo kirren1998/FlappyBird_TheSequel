@@ -10,7 +10,7 @@ public class EpicAsHeckScript : MonoBehaviour
     public int NumberOfDeaths;
     [SerializeField] Text TheTextForDeaths;
     [SerializeField] GameObject TheSecretVideo = null;
-    bool ResetUnthinkable = true;
+    [SerializeField] bool ResetUnthinkable = true;
 
     // On Awake
     private void Awake()

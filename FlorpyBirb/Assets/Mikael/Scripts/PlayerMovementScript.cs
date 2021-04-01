@@ -136,6 +136,10 @@ public class PlayerMovementScript : MonoBehaviour
             {
                 FindObjectOfType<EpicAsHeckScript>().IncreaseDeathNum();
             }
+            if (FindObjectOfType<DestroyShitTemp>())
+            {
+                FindObjectOfType<DestroyShitTemp>().SetHighScore();
+            }
         }
     }
 }

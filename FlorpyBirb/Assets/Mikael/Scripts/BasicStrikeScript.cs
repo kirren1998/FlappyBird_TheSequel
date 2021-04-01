@@ -10,6 +10,10 @@ public class BasicStrikeScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && GetComponentInParent<PlayerMovementScript>().IsAlive == true)
         {
             collision.gameObject.GetComponent<EnemyFightBack>().GetSlapped();
+            if (FindObjectOfType<DestroyShitTemp>())
+            {
+                FindObjectOfType<DestroyShitTemp>().GainPoints(5);
+            }
         }
     }
 }

@@ -7,12 +7,13 @@ public class DestroyShitTemp : MonoBehaviour
 {
     bool gameStarted = false;
     public float Score = 0;
+    int CurrentScore = 0;
     Text scoreText => transform.GetChild(1).GetComponent<Text>();
     Text highScoreText => transform.GetChild(2).GetComponent<Text>();
     GameObject startbutton => GetComponentInChildren<Button>().gameObject;
     private void Start()
     {
-        PlayerPrefs.SetInt("HighScore", 10);
+        SetHighScore();
         if (PlayerPrefs.GetInt("HighScore") != 0) highScoreText.text = "HighScore : " + PlayerPrefs.GetInt("HighScore");
         else highScoreText.enabled = false;
     }
@@ -25,7 +26,20 @@ public class DestroyShitTemp : MonoBehaviour
     public void GainPoints(int yeet)
     {
         Score += yeet;
+        CurrentScore = (int)Score;
     }
+    public void SetHighScore()
+    {
+        if (PlayerPrefs.GetInt("HighScore") != 0)
+        {
+            PlayerPrefs.SetInt("HighScore", 10);
+        }
+        else if (PlayerPrefs.GetInt("HighScore") < CurrentScore)
+        {
+            PlayerPrefs.SetInt("HighScore", CurrentScore);
+        }
+    }
+
     private void Update()
     {
         if (!gameStarted) return;
@@ -40,6 +54,7 @@ public class DestroyShitTemp : MonoBehaviour
         {
             Score += Time.deltaTime * (int)Settings.settings.difficulty * 4;
         }
+        CurrentScore = (int)Score;
         scoreText.text = "SCORE : " + Mathf.RoundToInt(Score);
     }
 }
