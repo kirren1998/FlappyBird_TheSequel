@@ -9,6 +9,8 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] float AttackInSeconds = 0.5f;
     [SerializeField] bool ComputerMoveset = false;
     [SerializeField] GameObject ActiveObjectCheck = null;
+    [SerializeField] GameObject ReactivatedObjectCheck = null;
+    [SerializeField] AudioClip TheSlaps = null;
     float CooldownCurrent = 0;
     float AttackInSecondsLeft = 0;
     bool GoingUp = false;
@@ -34,6 +36,11 @@ public class PlayerMovementScript : MonoBehaviour
 
         NormalGrav = TheBirbBody.gravityScale;
         TheBirbBody.gravityScale = 0;
+
+        if (ReactivatedObjectCheck != null)
+        {
+            ReactivatedObjectCheck.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -109,6 +116,10 @@ public class PlayerMovementScript : MonoBehaviour
             Debug.Log("SLAP!");
             AttackInSecondsLeft = AttackInSeconds;
             OnGoingSlap = true;
+            if (TheSlaps)
+            {
+                AudioSource.PlayClipAtPoint(TheSlaps, Camera.main.transform.position, 0.5f);
+            }
         }
         if (AttackInSecondsLeft > 0)
         {
@@ -130,16 +141,51 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && IsAlive)
         {
-            Debug.Log("Dead");
-            IsAlive = false;
+            DoDeathAction();
+        }
+    }
+
+    private void DoDeathAction()
+    {
+        Debug.Log("Dead");
+        IsAlive = false;
+        if (GetComponent<PlayerTemp>())
+        {
+            GetComponent<PlayerTemp>().Death();
+        }
+        if (FindObjectOfType<EpicAsHeckScript>())
+        {
+            FindObjectOfType<EpicAsHeckScript>().IncreaseDeathNum();
+        }
+        if (FindObjectOfType<DestroyShitTemp>())
+        {
+            FindObjectOfType<DestroyShitTemp>().SetHighScore();
+        }
+        if (ReactivatedObjectCheck.activeSelf == false)
+        {
             if (FindObjectOfType<EpicAsHeckScript>())
             {
-                FindObjectOfType<EpicAsHeckScript>().IncreaseDeathNum();
+                if (FindObjectOfType<EpicAsHeckScript>().DoTheUnthinkable())
+                {
+                    Invoke("ReactivateButton", 20f);
+                }
+                else
+                {
+                    Invoke("ReactivateButton", 1f);
+                }
             }
-            if (FindObjectOfType<DestroyShitTemp>())
+            else
             {
-                FindObjectOfType<DestroyShitTemp>().SetHighScore();
+                Invoke("ReactivateButton", 1f);
             }
+        }
+    }
+
+    private void ReactivateButton()
+    {
+        if (ReactivatedObjectCheck != null)
+        {
+            ReactivatedObjectCheck.SetActive(true);
         }
     }
 }

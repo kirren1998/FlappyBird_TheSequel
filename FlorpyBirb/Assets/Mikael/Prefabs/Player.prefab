@@ -104,9 +104,13 @@ MonoBehaviour:
   CooldownInSecond: 0.25
   AttackInSeconds: 0.5
   ComputerMoveset: 1
+  ActiveObjectCheck: {fileID: 0}
+  ReactivatedObjectCheck: {fileID: 0}
+  TheSlaps: {fileID: 8300000, guid: d679d975875421b4f84418940437f803, type: 3}
   SlappingEnemy: 0
   SlapHandObject: {fileID: 1571084497712148940}
   IsAlive: 1
+  IsActive: 0
 --- !u!50 &1571084496956587134
 Rigidbody2D:
   serializedVersion: 4
