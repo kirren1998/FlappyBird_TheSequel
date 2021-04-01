@@ -12,21 +12,6 @@ public class EpicAsHeckScript : MonoBehaviour
     [SerializeField] GameObject TheSecretVideo = null;
     [SerializeField] bool ResetUnthinkable = true;
 
-    // On Awake
-    private void Awake()
-    {
-        int GameStatusCount = FindObjectsOfType<EpicAsHeckScript>().Length;
-        if (GameStatusCount > 1)
-        {
-            this.gameObject.SetActive(false);
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
