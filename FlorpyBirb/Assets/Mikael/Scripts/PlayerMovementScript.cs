@@ -8,6 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] float CooldownInSecond = 2f;
     [SerializeField] float AttackInSeconds = 0.5f;
     [SerializeField] bool ComputerMoveset = false;
+    [SerializeField] GameObject ActiveObjectCheck = null;
     float CooldownCurrent = 0;
     float AttackInSecondsLeft = 0;
     bool GoingUp = false;
@@ -17,6 +18,8 @@ public class PlayerMovementScript : MonoBehaviour
     Vector2 MouseLocation;
 
     public bool IsAlive = true;
+    public bool IsActive = false;
+    float NormalGrav;
 
     float WindowsSizeX = 100f;
 
@@ -28,12 +31,20 @@ public class PlayerMovementScript : MonoBehaviour
         TheBirbBody = GetComponent<Rigidbody2D>();
 
         WindowsSizeX = Screen.width;
+
+        NormalGrav = TheBirbBody.gravityScale;
+        TheBirbBody.gravityScale = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         MouseLocation = Input.mousePosition;
+        if (ActiveObjectCheck.activeSelf == false && !IsActive)
+        {
+            IsActive = true;
+            TheBirbBody.gravityScale = NormalGrav;
+        }
         if (IsAlive)
         {
             if (ComputerMoveset)
@@ -115,16 +126,16 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy" && IsAlive)
         {
             Debug.Log("Dead");
+            IsAlive = false;
             if (FindObjectOfType<EpicAsHeckScript>())
             {
                 FindObjectOfType<EpicAsHeckScript>().IncreaseDeathNum();
             }
-            IsAlive = false;
         }
     }
 }

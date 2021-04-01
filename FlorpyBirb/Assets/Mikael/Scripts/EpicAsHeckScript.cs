@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
 public class EpicAsHeckScript : MonoBehaviour
 {
     public int NumberOfDeaths;
     [SerializeField] Text TheTextForDeaths;
+    [SerializeField] GameObject TheSecretVideo = null;
+    bool ResetUnthinkable = true;
 
     // On Awake
     private void Awake()
@@ -27,13 +30,19 @@ public class EpicAsHeckScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (ResetUnthinkable)
+        {
+            PlayerPrefs.SetInt("Deaths", 0);
+        }
+        NumberOfDeaths = PlayerPrefs.GetInt("Deaths");
         UpdateLivesText();
     }
 
     public void IncreaseDeathNum()
     {
         NumberOfDeaths++;
-        if (NumberOfDeaths == 3)
+        PlayerPrefs.SetInt("Deaths", NumberOfDeaths);
+        if (DoTheUnthinkable())
         {
             TheUnthinkableOption();
         }
@@ -47,11 +56,30 @@ public class EpicAsHeckScript : MonoBehaviour
 
     public void UpdateLivesText()
     {
-        TheTextForDeaths.text = "Deaths: " + NumberOfDeaths;
+        if (TheTextForDeaths != null)
+        {
+            TheTextForDeaths.text = "Deaths: " + NumberOfDeaths;
+        }
     }
 
     private void TheUnthinkableOption()
     {
         Debug.Log("Losing 3 times? UNTHINKABLE");
+        if (TheSecretVideo != null)
+        {
+            TheSecretVideo.GetComponent<VideoPlayer>().enabled = true;
+        }
+    }
+
+    public bool DoTheUnthinkable()
+    {
+        if (NumberOfDeaths == 3 || NumberOfDeaths == 7 || NumberOfDeaths == 42)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

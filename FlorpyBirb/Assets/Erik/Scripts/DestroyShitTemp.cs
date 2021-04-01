@@ -29,7 +29,17 @@ public class DestroyShitTemp : MonoBehaviour
     private void Update()
     {
         if (!gameStarted) return;
-        Score += Time.deltaTime * (int)Settings.settings.difficulty * 4;
+        if (FindObjectOfType<PlayerMovementScript>())
+        {
+            if (FindObjectOfType<PlayerMovementScript>().IsAlive)
+            {
+                Score += Time.deltaTime * (int)Settings.settings.difficulty * 4;
+            }
+        }
+        else
+        {
+            Score += Time.deltaTime * (int)Settings.settings.difficulty * 4;
+        }
         scoreText.text = "SCORE : " + Mathf.RoundToInt(Score);
     }
 }
