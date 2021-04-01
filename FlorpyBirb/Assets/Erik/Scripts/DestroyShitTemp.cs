@@ -13,7 +13,6 @@ public class DestroyShitTemp : MonoBehaviour
     GameObject startbutton => GetComponentInChildren<Button>().gameObject;
     private void Start()
     {
-        SetHighScore();
         if (PlayerPrefs.GetInt("HighScore") != 0) highScoreText.text = "HighScore : " + PlayerPrefs.GetInt("HighScore");
         else highScoreText.enabled = false;
     }
@@ -30,13 +29,13 @@ public class DestroyShitTemp : MonoBehaviour
     }
     public void SetHighScore()
     {
-        if (PlayerPrefs.GetInt("HighScore") != 0)
-        {
-            PlayerPrefs.SetInt("HighScore", 10);
-        }
-        else if (PlayerPrefs.GetInt("HighScore") < CurrentScore)
+        if (PlayerPrefs.GetInt("HighScore") < CurrentScore)
         {
             PlayerPrefs.SetInt("HighScore", CurrentScore);
+        }
+        else if (PlayerPrefs.GetInt("HighScore") <= 10)
+        {
+            PlayerPrefs.SetInt("HighScore", 10);
         }
     }
 
