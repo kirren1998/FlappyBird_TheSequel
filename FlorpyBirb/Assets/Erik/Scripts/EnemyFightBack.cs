@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyFightBack : MonoBehaviour
 {
+    public AudioClip lazer;
     public int AlienColor;
     public GameObject laser;
     public Sprite[] laserSprites;
@@ -22,6 +23,7 @@ public class EnemyFightBack : MonoBehaviour
     IEnumerator SHOOTTHECANONCAPTAIN()
     {
         yield return new WaitUntil(() => player.position.x - transform.position.x < 14);
+        GetComponent<AudioSource>().PlayOneShot(lazer);
         FireShit();
     }
     void FireShit()
