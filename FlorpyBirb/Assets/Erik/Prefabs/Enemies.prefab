@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 1368681199572588806}
   - component: {fileID: 1368681199572588805}
   - component: {fileID: 1368681199572588804}
-  - component: {fileID: 7475645372602030594}
   - component: {fileID: -1086704061630580355}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemies
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,32 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!61 &7475645372602030594
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368681199572588801}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
-  m_EdgeRadius: 0
 --- !u!114 &-1086704061630580355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,4 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687f80e2e9fd21542ac9332a2e77a954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  AlienColor: 0
+  laser: {fileID: 4212701867737212394, guid: 9fa8ece0f1d7d6845ada3a2753945978, type: 3}
+  laserSprites:
+  - {fileID: 6642765507910698205, guid: e6216cbbe1b2ac64b96fec9dcde1ee4f, type: 3}
+  - {fileID: 3925379903042892914, guid: e6216cbbe1b2ac64b96fec9dcde1ee4f, type: 3}
+  - {fileID: 3520581929853621699, guid: e6216cbbe1b2ac64b96fec9dcde1ee4f, type: 3}
+  - {fileID: 753573645750615480, guid: e6216cbbe1b2ac64b96fec9dcde1ee4f, type: 3}
+  enemyType: 2
