@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public AudioClip backgroundSound;
     int randomAlien;
     Settings settings;
     public GameObject enenemeny;
@@ -15,7 +16,8 @@ public class EnemySpawner : MonoBehaviour
     }
     public void StartGame()
     {
-        Invoke("SpawnDanger", 3);       
+        GetComponent<AudioSource>().PlayOneShot(backgroundSound);
+        Invoke("SpawnDanger", 3);
     }
     private void SpawnDanger()
     {

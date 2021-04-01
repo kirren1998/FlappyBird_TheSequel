@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BasicStrikeScript : MonoBehaviour
 {
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy" && GetComponentInParent<PlayerMovementScript>().IsAlive == true)
